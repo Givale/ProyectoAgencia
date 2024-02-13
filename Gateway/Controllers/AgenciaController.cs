@@ -12,19 +12,22 @@ namespace Gateway.Controllers
         {
             _dbContext = dbContext;
         }
+
+        [Route("get")]
         [HttpGet]
-        public IEnumerable<Vehiculo> Read()
+        public IEnumerable<Vehiculo> Get()
         {
             return _dbContext.Vehiculos.ToList();
         }
 
-        [Route("api/[controller]/id")]
+        [Route("find")]
         [HttpGet]
-        public Vehiculo? Read([FromQuery] Int64 id)
+        public Vehiculo? Find([FromQuery] Int64 id)
         {
             return _dbContext.Vehiculos.Find(id);
         }
 
+        [Route("create")]
         [HttpPut]
         public Int64 Create([FromBody] Vehiculo vehiculo)
         {
@@ -33,6 +36,7 @@ namespace Gateway.Controllers
             return response;
         }
 
+        [Route("update")]
         [HttpPost]
         public Int64 Update([FromBody] Vehiculo vehiculo)
         {
@@ -41,6 +45,7 @@ namespace Gateway.Controllers
             return response;
         }
 
+        [Route("delete")]
         [HttpDelete]
         public Int64 Delete([FromBody] Vehiculo vehiculo)
         {
